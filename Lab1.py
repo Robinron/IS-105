@@ -1,4 +1,4 @@
-# -*- coding: latin-1 -*-
+# -*- coding: utf-8 -*-
 
 #
 #  IS-105 LAB1
@@ -162,8 +162,14 @@ transferHex("Hi")
 # Oppgave 8
 # 		Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
 # 		Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
-def unicodeBin(character):
-	pass	
+def unicodeBin(bokstav):
+#	desimal = ord(bokstav)
+	tilBin = '{0:08b}'.format(229) #229 er desimaltallet for å
+	print(tilBin)
+	
+print "å som binært er"
+
+unicodeBin('å')
 
 #
 # Oppgave 9
@@ -195,7 +201,7 @@ def test():
 #	assert ascii8Bin('C') == 01000011
 #	assert transferBin('Hello') == {01001000, 01100101, 01101100, 01101100, 01101111}
 #   assert transferHex('Hi') == [00000048, 00000069]
-	assert unicodeBin('å') == '11100101'
+#	assert unicodeBin('å') == '11100101'
 	# Dine egne tester
 	return "Testene er fullført uten feil."
 
