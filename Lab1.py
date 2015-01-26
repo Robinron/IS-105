@@ -107,8 +107,13 @@ print "Test3 = %d" %test3
 #	 Forklar resultatet ascii8Bin('å')
 #	 Hvilke faktorer påvirker resultatet? Forklar.
 #
-def ascii8Bin(letter):
-	pass
+def ascii8Bin(bokstav):
+	binobjekt = ord(bokstav)
+	tilBin = "{0:08b}".format(binobjekt)
+	print(tilBin)
+	
+print "A som binært er"
+ascii8Bin("A")
 
 # 
 #  Oppgave 6
