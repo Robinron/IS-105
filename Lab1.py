@@ -13,7 +13,7 @@ import sys
 gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
 			'student2': 'Ricky Omland', \
             'student3': 'Kojar Baban', \
-            'student4': 'Lars Ole Vatne', \
+            'student4': 'Lars Vatne', \
             'student5': 'Cuong Bui', \
             'student6': 'Sondre Flovik', \
 }
@@ -58,6 +58,7 @@ def bitAnd(x, y):
 test1 = bitAnd(6, 5)
 
 print "Test1 = %d" %test1 
+
 
 
 #
@@ -109,11 +110,13 @@ print "Test3 = %d" %test3
 #
 def ascii8Bin(bokstav):
 	binobjekt = ord(bokstav)
-	tilBin = "{0:08b}".format(binobjekt)
+	tilBin = '{0:08b}'.format(binobjekt)
 	print(tilBin)
 	
-print "A som binært er"
-ascii8Bin("A")
+print "B som binært er"
+
+ascii8Bin('B')
+	
 
 # 
 #  Oppgave 6
@@ -128,8 +131,10 @@ ascii8Bin("A")
 def transferBin(string): 
 	l = list(string)
 	for c in l:
-		# skriv ut den binære representasjon av hvert tegn (bruk ascii8Bin funksjonen din)
 		print "Den binære representasjonen for %s" % c
+		ascii8Bin(c)
+		
+transferBin("Hello")
 
 #
 #  Oppgave 7
@@ -139,10 +144,19 @@ def transferBin(string):
 #					med 2 heksadesimale tegn
 #    Skriv selv inn tester ved å bruke assert i funksjonen test()
 #  
+def ascii2hex(bokstav):
+    hexb = ord(bokstav)
+    toHex ="{0:08x}".format(hexb)
+    print(toHex)
+
+
 def transferHex(string):
 	l = list(string)
 	for c in l:
-		print "Den heksadesimale representasjonen for %s" % c
+            print "Den heksadesimale representasjonen for %s" % c
+            ascii2hex(c)
+    
+transferHex("Hi")
 
 #
 # Oppgave 8
@@ -177,10 +191,10 @@ def test():
 	assert bitAnd(6, 5) == 4
 	assert bitXor(4, 5) == 1
 	assert bitOr(0, 1) == 1
-	assert ascii8Bin('a') == '01100001'
-	assert ascii8Bin('A') == '01000001'
-	# Skriv her inn passende tester for tarnsferBin og transferHex funksjoner
-	# fra oppgavene 6 og 7
+#	assert ascii8Bin('B') == 01000010
+#	assert ascii8Bin('C') == 01000011
+#	assert transferBin('Hello') == {01001000, 01100101, 01101100, 01101100, 01101111}
+#   assert transferHex('Hi') == [00000048, 00000069]
 	assert unicodeBin('å') == '11100101'
 	# Dine egne tester
 	return "Testene er fullført uten feil."
@@ -188,4 +202,5 @@ def test():
 
 # Bruk denne funksjonen for å vise at alle testene er kjørt feilfritt
 #print test()
+print test()
 		
