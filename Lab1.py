@@ -197,10 +197,11 @@ def test():
 	assert bitAnd(6, 5) == 4
 	assert bitXor(4, 5) == 1
 	assert bitOr(0, 1) == 1
+#	Fikk ikke til å kjøre alle testene selv om vi testet selv at funksjonene kjørte
 #	assert ascii8Bin('B') == 01000010
 #	assert ascii8Bin('C') == 01000011
 #	assert transferBin('Hello') == {01001000, 01100101, 01101100, 01101100, 01101111}
-#   assert transferHex('Hi') == [00000048, 00000069]
+#       assert transferHex('Hi') == [00000048, 00000069]
 #	assert unicodeBin('å') == '11100101'
 	# Dine egne tester
 	return "Testene er fullført uten feil."
