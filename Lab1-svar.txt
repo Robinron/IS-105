@@ -1,0 +1,56 @@
+Lab 1, OPPGAVE 2 
+Lambda expression er en annonyim funksjon som ikke har noen tilknytning til noen navn. Den inkluderer heller ingen «return» utallelse. Et som er fint med lambda er at det er en expression som ikke er tildelt til en variabel. 
+
+If – else utallelser er brukt til betinget evaluering. Den evaluerer en expressions hvis den returnerer verdien TRUE så blir den utført, ellers så går den videre til neste expression. Hvis alle expressions er FALSE blir false utført isteden. 
+
+Operatoren not gir fra seg verdien TRUE hvis argumentet er feil, ellers så er det FALSE, hvis arg. 
+er riktig.
+
+And, x and y utallelsen evaluerer først x hvis den er TRUE blir dets value returnert, ellers blir y evaluert og hvis den også returnerer false blir resulatet av verdien returnert (hvis begge er like så blir det TRUE, ellers blir else returnert).
+ 
+X or Y, or evaluerer først x og ser om den gir verdien TRUE hvis den gjør det blir verdien til x returnert ellers så blir y evaluert før resultatet av operasjonen blir returnert (enten så blir X eller Y TRUE ellers så blir else returnert. 
+
+== sjekker om verdiene av to operander er lik eller ikke, hvis de er like blir kondisjonen TRUE.
+!=  sjekker om verdiene av to operander er lik eller ikke, hvis de ikke er like blir den TRUE
+<>  sjekker om verdiene av to operander er lik eller ikke, hvis de ikke er like blir den TRUE
+>  sjekker om verdiene på den venstre siden er høyere enn den på høyre siden, hvis den er blir den TRUE
+<  sjekker om verdiene på den venstre siden er mindre enn den på høyre siden, hvis den er blir den TRUE
+>= sjekker om verdien på venstre side er høyere eller lik den på høyre siden, hvis den er blir den TRUE
+<= sjekker om verdien på venstre side er mindre eller lik den på høyre siden, hvis den er blir den TRUE
+
+| Kopierer enten Binary OR Operator, bit-en blir kopiert hvis den ekisterer i en av operandene. 
+^ Kopierer Binary XOR Operator hvis den er satt i en operand, men ikke begge.
+& Kopierer en bit hvis den ekisterer i både Binary AND Operator 
+<< Returnerer x med biter forskjøvet til venstre ved y steder. (nye its på høyre siden blir 0-er)
+>> Returner x med biter forskjøvet til høyre ved y steder.
+
++ addisjon
+- Subtraksjon
+
+* Muliplikasjon
+/ Division
+//  skjønner ikke
+% modulo operator, resultatet av en modulo er resten av et divisjon stykke
+ f. Eks 35 / 3 = 11 og 2 rest. Derfor blir svaret 2.
+-x svar
++xsvar
+~x  svar
+
+** eksponensieringen
+
+x[index], svar 
+ x[index:index], svar 
+ x(arguments...), svar 
+ x.attribute svar 
+
+(expressions...), svar 
+ [expressions...],  svar 
+{key: value...},  svar 
+`expressions...`  svar 
+
+One's compliment går ut på at man tar verdiene i en bit og flipper dem. 0 blir til 1 og 1 blir til 0.
+trenger mer på One's compliment 
+
+Pass uttalelsen i Python brukes når en utallelse trenger en syntax, men man ikke har list til å utføre en kommando eller kode. Pass har en null verdi dvs.  at ingenting skjer når det utføres. Man skriver pass på steder hvor man eventuellt kommer til å skrive en kode der. 
+
+Hva mener janis med «finn ut hva hver eneste linje av kode betyr og beskriv det i besvarelsen»?
