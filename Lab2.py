@@ -1,48 +1,94 @@
 # -*- coding: utf-8 -*-
-
-def int_to_roman (integer):
-
-    returnstring=''
-    table=[['M',1000],['CM',900],['D',500],['CD',400],['C',100],['XC',90],['L',50],['XL',40],['X',10],['IX',9],['V',5],['IV',4],['I',1]]
-
-    for pair in table:
-
-        while integer-pair[1]>=0:
-
-            integer-=pair[1]
-            returnstring+=pair[0]
-
-    print returnstring
-
-def rom_to_int(string):
-
-    table=[['M',1000],['CM',900],['D',500],['CD',400],['C',100],['XC',90],['L',50],['XL',40],['X',10],['IX',9],['V',5],['IV',4],['I',1]]
-    returnint = 0
-    for pair in table:
+import re
+import math
 
 
-        continueyes=True
+# Regular expression used to validate and parse Roman numbers
+roman_re = re.compile("""^
+   ([M]{0,9})   # thousands
+   ([DCM]*)     # hundreds
+   ([XLC]*)     # tens
+   ([IVX]*)     # units
+   $""", re.VERBOSE)
 
-        while continueyes:
-            if len(string)>=len(pair[0]):
+# This array contains valid groups of digits and encodes their values.
+# The first row is for units, the second for tens and the third for
+# hundreds. For example, the sixth element of the tens row yields the
+# value 50, as the first is 0.
+d2r_table = [
+    ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+    ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+    ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM']]
 
-                if string[0:len(pair[0])]==pair[0]:
-                    returnint+=pair[1]
-                    string=string[len(pair[0]):]
 
-                else: continueyes=False
-            else: continueyes=False
 
-    print returnint
+def roman2dec(roman):
+    """Converts a roman number, encoded in a string, to a decimal number."""
+    roman = roman.upper()
+    match = roman_re.match(roman)
+
+    if not match:
+        raise ValueError
+
+    thousands, hundreds, tens, units = match.groups()
+    result = 1000 * len(thousands)
+    result += d2r_table[2].index(hundreds) * 100
+    result += d2r_table[1].index(tens) * 10
+    result += d2r_table[0].index(units)
+
+    print result
+
+
+def dec2roman(dec):
+    """Converts a positive decimal integer to a roman number."""
+    if dec == 0:
+        return ''
+
+    digit = 0
+    rem = dec
+    result = ''
+
+    # Length in digits of the number dec
+    dec_len = int(math.ceil(math.log10(dec)) + 1)
+
+    # Scan the number digit-by-digit, starting from the MSD (most-significant
+    # digit)
+    while dec_len > 0:
+        # Let's take the current digit
+        factor = 10 ** (dec_len - 1)
+        digit = rem / factor
+
+        # And remove it from the number
+        rem = rem - digit * factor
+
+        if dec_len >= 4:
+            # Thousands
+            result = result + digit * 'M'
+        else:
+            # Look in the look-up table
+            result = result + d2r_table[dec_len - 1][digit]
+
+        dec_len -= 1
+
     
-#def rom_addisjon(string1, string2):
+    print result
+dec2roman(2129) 
+roman2dec("XII")
 
-    #table=[['M'],['CM'],['D'],['CD'],['C'],['XC'],['L'],['XL'],['X'],['IX'],['V'],['IV'],['I']]
-    
-def addRoman(left, right):
-    newString = left + right                  
-    print newString
-    
-addRoman("III", "I")
-        
-    
+m=zip((1000,900,500,400,100,90,50,40,10,9,5,4,1),
+('M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'))
+def doit(s):
+ x={'M':1e3,'D':500,'C':100,'L':50,'X':10,'V':5,'I':1};y=[];z='';a='0';s='+'+s
+ for c in s.upper():
+  if c in x:
+   z+=c;y.append(x[c])
+   if len(y)>1and y[-1]>y[-2]:y[-2]*=-1
+   x[z]=sum(y)
+  elif c in"+/*-":a='('+a+z+')'+c;y=[];z=''
+ a+=z;i=eval(a,x);r = ''
+ for n,c in m:d=int(i/n);r+=c*d;i-=n*d
+ return r
+
+
+print doit("II + III")
+print doit("x - v")
