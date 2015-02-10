@@ -1,0 +1,15 @@
+Oppgave 1-2 er server og client filene.
+
+Oppgave 3
+Sammenhengen mellom den binære verdien til små bokstaver og den binære verdien til store bokstaver
+er at de kun skilles med verdien til 1 enkelt bit.
+
+F.eks er "A" 01000001, mens "a" er 01100001.
+
+Bokstavenes plassering og verdi i ascii-systemet er satt opp slik at en liten og 
+en stor av samme bokstav endres kun ved å endre en enkelt bit, fremfor større 
+deler av den binære koden. Grunnen til dette er at når systemet ble utviklet 
+var datakapasiteteten begrenset, og dette skulle gjøre det enklest 
+mulig å skille/endre mellom små og store bokstaver av samme type.
+
+Oppgave 4-7 ikke gjort
