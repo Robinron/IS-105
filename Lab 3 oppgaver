@@ -12,4 +12,14 @@ deler av den binære koden. Grunnen til dette er at når systemet ble utviklet
 var datakapasiteteten begrenset, og dette skulle gjøre det enklest 
 mulig å skille/endre mellom små og store bokstaver av samme type.
 
-Oppgave 4-7 ikke gjort
+Oppgave 4
+Applikasjonen fungerer og gir ikke feilmelding for tegn utover ASCII tegnsettet (f.eks. æøå), 
+men serveren/tjeneren klarer ikke behandle lowercase til uppercase (.upper klarer ikke lese/finne kode for æøå).
+
+Vi vet ikke hvorfor, det vi vet er at:
+- Bokstavene æ,ø og å er representert av 2 bytes og ikke med 1 byte som det vanlige ASCII tegnsettet.
+- Wireshark -> bokstavene / teksten er ikke overført som en bokstav men som en tallkode, f.eks \303\205 (stor Å)
+- ???
+
+
+Oppgave 5-7 ikke gjort
