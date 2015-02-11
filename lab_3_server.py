@@ -32,7 +32,7 @@ while 1:
     if not data: 
         break
      
-    reply = data.upper()
+    reply = data.decode('utf-8').upper().encode('utf-8')
      
     s.sendto(reply , addr)
     print 'Message[' + addr[0] + ':' + str(addr[1]) + '] - ' + data.upper()
