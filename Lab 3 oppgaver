@@ -2,7 +2,7 @@ Oppgave 1-2 er server og client filene.
 
 Oppgave 3
 Sammenhengen mellom den binære verdien til små bokstaver og den binære verdien til store bokstaver
-er at de kun skilles med verdien til 1 enkelt bit.
+er at de kun skilles med verdien til 1 enkelt bit. Biten som skiller bokstavene er den 6(altså den på 32'er plassen).
 
 F.eks er "A" 01000001, mens "a" er 01100001.
 
