@@ -1,5 +1,8 @@
+# -*- coding: latin-1 -*-
+
 import socket   #for sockets
 import sys  #for exit
+
  
 # Lager dgram udp socket
 try:
@@ -11,6 +14,7 @@ except socket.error:
 host = 'localhost';
 port = 8888;
  
+ 
 while(1) :
     msg = raw_input('Enter message to send : ')
      
@@ -20,11 +24,11 @@ while(1) :
          
         # motta data fra client(data, addr)
         d = s.recvfrom(1024)
-        reply = d[0]
+        msg_send = d[0]
         addr = d[1]
-         
-        print 'Server reply : ' + reply
-     
+        
+        print msg_send
+        
+        #print ' '.join(format(ord(x), 'b') for x in reply)
     except socket.error, msg:
-        print 'Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
         sys.exit()
