@@ -1,0 +1,26 @@
+Lab 6
+Oppgave 1
+
+a) tid fra http-get til http-ok
+
+
+b) feltene i http
+
+
+
+Oppgave 2
+
+a) IF-MODIFIED-SINCE skal ikke være med her fordi du ikke har besøkt siden tidligere. 
+IF-MODIFIED-SINCE skal sjekke om siden har vært endret siden sist gang du besøkte siden, 
+og om du ikke har besøkt siden tidligere er ikke dette relevant.
+
+b) Når man inspiserer responsen og tar «follow TCP stream» vil man se hvilket svar man får fra serveren. 
+ Her ser man innholdet som blir lastet når man kommer inn på siden.  
+ 
+c) Grunnen til at IF-MODIFIED-SINCE er med her er at nå har vi allerede besøkt siden.
+Om siden ikke har blitt endret så ligger det en versjon i nettleserens cache som den kan laste inn. 
+Verdien i feltet er dato og klokkeslett for sist gang siden ble lastet inn / sist gang du besøkte siden.
+
+d) Her henter man ikke data fra serveren. Det blir kontrollert om siden er modifisert fra sist besøk, 
+og hvis den ikke er det (slik som i dette tilfellet), vil serveren kun respondere med at siden ikke er endret, 
+og nettleseren vil laste den samme versjonen som du besøkte sist.
