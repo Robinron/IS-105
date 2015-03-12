@@ -1,11 +1,43 @@
 Lab 6
 Oppgave 1
 
-a) tid fra http-get til http-ok
+a) tid fra http-get til http-ok 
+Pga. problemer med å finne http på eksempellinken valgte vi å gå inn på www.uia.no
+1.25 -> 3.58 (text/html) 
+4.19 -> 4.38 (application/json)
+
+
+Tiden fra GET til OK er tiden det tar å laste informasjonen man forespør. "GET" er når man begynner 
+å hente informasjon fra serveren, "OK" er når informasjonen er lastet inn.
 
 
 b) feltene i http
+GET
+Host: Nettsiden / serveren du kobler deg til
+Connection: Spesifiserer hvilken type kobling det skal være mellom klient og server, f.eks. Keep-Alive.
+Accept: Hvilken informasjon som skal godtas og hentes/vises/lastes
+User-Agent: Programvare som gjør handlinger for brukeren, i dette tilfellet en nettleser.
+Accept-Encoding: Hvordan HTTP-data er komprimert når det sendes fra serveren, og hvordan data skal pakkes ut.
+Accept-Language: Hvilke språk brukeren prefererer, kan ofte angis i populære nettlesere.
+Da vil siden (om mulig) lastes i et av dine ønskede språk, f.eks nb-NO primært og en-US sekundært.
+Cookie: Informasjonskapsler på siden
+If-Modified-Since: Om siden ikke er forandret fra sist lagrede besøk (cache), 
+last lagret versjon. Om endret, last ny versjon.
 
+OK
+Date: Dato og klokkeslett
+Server: Servertype/OS (f.eks. Apache/2.2.15 (Red Hat))
+X-Powered-By: Spesifiserer datastrukturen/teknologien som er brukt, f.eks. .ASP, .NET
+Expires: Gir dato/klokkeslett hvorpå responsen blir ansett som foreldet.
+Last-Modified: Sist siden ble endret
+Cache-Control: Sjekker cache i nettleseren, revaliderer data
+Pragma: Unntak for direktiv, f.eks. no-cache så skal den sende forespørsel til origin-serveren selv om en cache-versjon er tilgjengelig.
+Served-by: Domenet serveren kjører på
+Content-language: Språket til siden når du laster den, f.eks. no-bokmaal
+Keep-Alive: At det skal opprettholdes en aktiv kobling mellom klient og server
+Connection: Spesifiserer hvilken type kobling det skal være mellom klient og server, f.eks. Keep-Alive.
+Transfer-Encoding: Hvordan man koder data som skal overføres. F.eks. chunked, compress, deflate, gzip, identify
+Content-Type: datatypen som skal returneres, f.eks. text/html; charset=utf-8
 
 
 Oppgave 2
