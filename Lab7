@@ -20,7 +20,8 @@ Sequence number: 0
 b) Hvilket element i headeren er det som forteller deg at dette er det første
 segmentet i en thre-way-handshake?
 
-
+SYN-flagget. 
+Dette er satt til 1 og indikerer at dette er et SYN-segment og dermed en del av en three-way-handshake(SYN, SYN-ACK, ACK)
 
 4.
 a) Hva er Sequence number i SYN ACK-segmentet som er sendt fra
