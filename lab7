@@ -1,0 +1,44 @@
+Spørsmål:
+1. Hva er IP-adressen og TCP-portnummeret som din maskin (source) bruker for å
+overføre filen til gaia.cs.umass.edu?
+
+IP(v4)-adresse: 158.37.244.233
+TCP-portnummer(source): 62044
+
+2. Hva er IP-adressen og portnummeret som gaia.cs.umass.edu bruker for å motta filen?
+
+3.
+
+a) Hva er Sequence number i TCP SYN-segmentet som blir brukt for å opprette
+TCP-forbindelsen mellom din maskin og gaia.cs.umass.edu?
+
+b) Hvilket element i headeren er det som forteller deg at dette er det første
+segmentet i en thre-way-handshake?
+
+4.
+a) Hva er Sequence number i SYN ACK-segmentet som er sendt fra
+gaia.cs.umass.edu til din maskin som svar på SYN?
+
+b) Hvilket element i headeren er det som forteller deg at dette er det andre
+segmentet i en thre-way-handshake?
+
+5. Feltet «next sequence number» i Wireshark finnes ikke i selve TCP-headeren. Feltet
+står der kun for at Wireshark vet hva det neste «sequence number» vil være. Kikk på
+segmentet som har «sequence number» 1. Hvordan kan du vite hva neste «sequence
+number» er uten å bruke «next sequence number» som Wireshark har laget?
+
+6. Bruk en samlet tabell for a, b, og c. Se eksempel under
+
+a) Gå ut i fra at TCP-segmentet som inneholder HTTP POST er det første segmentet i
+selve filoverføringen. Skriv ned ”Sequence number” på de seks første pakkene du
+har sendt i fra deg. Skriv også ned verdien i time-kolonnen.
+
+b) Nå som vi har funnet de seks første pakkene vi sendte i fra oss, gjør vi det samme
+for de seks første pakkene vi mottok. Tegn opp i tabell som viser hvordan sending
+og mottak hører sammen. Husk at aknowledgement number fra mottaker peker på
+det som er ”next sequence number” i pakken som ble sendt fra deg. Se tabell under
+for hjelp til oppsett. Time er fra Time-kolonnen i wireshark.
+
+c) Nå som du har en tabell med Sequence-number, Aknowledgement number og tid,
+kan du finne RTT (Round trip time). Sett dette også inn i tabellen. Det holder med
+to desimaler. 
