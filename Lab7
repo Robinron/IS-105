@@ -7,6 +7,9 @@ TCP-portnummer(source): 62044
 
 2. Hva er IP-adressen og portnummeret som gaia.cs.umass.edu bruker for å motta filen?
 
+IP(v4)-adresse: 128.119.245.12
+TCP-portnummer(destination): 80
+
 3.
 
 a) Hva er Sequence number i TCP SYN-segmentet som blir brukt for å opprette
