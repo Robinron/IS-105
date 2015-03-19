@@ -42,6 +42,13 @@ står der kun for at Wireshark vet hva det neste «sequence number» vil være. 
 segmentet som har «sequence number» 1. Hvordan kan du vite hva neste «sequence
 number» er uten å bruke «next sequence number» som Wireshark har laget?
 
+Ved å legge sammen sequence number og TCP sequence length finner man next sequence number.
+Eks: 
+[TCP Segment Len: 649]
+Seq: 1
+
+Da blir neste sequence number 650.
+
 6. Bruk en samlet tabell for a, b, og c. Se eksempel under
 
 a) Gå ut i fra at TCP-segmentet som inneholder HTTP POST er det første segmentet i
