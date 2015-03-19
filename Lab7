@@ -27,8 +27,15 @@ Dette er satt til 1 og indikerer at dette er et SYN-segment og dermed en del av 
 a) Hva er Sequence number i SYN ACK-segmentet som er sendt fra
 gaia.cs.umass.edu til din maskin som svar på SYN?
 
+Sequence number: 0
+
 b) Hvilket element i headeren er det som forteller deg at dette er det andre
 segmentet i en thre-way-handshake?
+
+SYN og ACK flagget. 
+Disse er satt til 1 og indikerer at dette er et SYNACK-segment og dermed en del av en three-way-handshake(SYN, SYN-ACK, ACK)
+
+
 
 5. Feltet «next sequence number» i Wireshark finnes ikke i selve TCP-headeren. Feltet
 står der kun for at Wireshark vet hva det neste «sequence number» vil være. Kikk på
