@@ -3,8 +3,9 @@ Oppgave 1
 
 a) tid fra http-get til http-ok 
 Pga. problemer med å finne http på eksempellinken valgte vi å gå inn på www.uia.no
-1.25 -> 3.58 (text/html) 
-4.19 -> 4.38 (application/json)
+Tallene nedenfor er antall sekunder fra capture er startet, det første tallet er http-get, det andre tallet er http-ok. 
+1.25 -> 3.58 (text/html) 3.58 - 1.25 = 2.33 sekunder fra http-get til http-ok
+4.19 -> 4.38 (application/json)  4.38 - 4.19= 0.19 sekunder fra http-get til http-ok
 
 
 Tiden fra GET til OK er tiden det tar å laste informasjonen man forespør. "GET" er når man begynner 
@@ -55,4 +56,4 @@ Verdien i feltet er dato og klokkeslett for sist gang siden ble lastet inn / sis
 
 d) Her henter man ikke data fra serveren. Det blir kontrollert om siden er modifisert fra sist besøk, 
 og hvis den ikke er det (slik som i dette tilfellet), vil serveren kun respondere med at siden ikke er endret, 
-og nettleseren vil laste den samme versjonen som du besøkte sist.
+og nettleseren vil laste den samme versjonen som du besøkte sist. Siden som lastes er versjon som er lagret i nettleserens cache.
