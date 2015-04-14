@@ -1,0 +1,96 @@
+Lab 8
+
+Teoridelen
+
+1)
+▪   Protocol Version (4 bits) 
+
+Dette er det første feltet I protokoll headeren. Dette feltet okkuperer 4 bits. Dette henviser til den nåværende IP protokoll versjonen som blir brukt. Den vanligste IP protokollen er per I dag versjon 4 mens versjon 6 likevel er ute og vokser raskt. 
+
+▪   Internet Header Length (IHL) (4 bits) 
+Dette feltet viser til lengden av IP headeren. Lengden på headeren er representert ved 32 bits ord. Denne lengden inkluderer også et valgfritt opsjonsfelt. Minimum IPv4 hodelengde er på 20 bytes (5*32/8=20). Maksimum IPv4 hodelengde er på 60 bytes (15*32/8=60). 
+
+▪   Type Of Service (8 bits) 
+
+Type of Service (ToS) består av 8 bits, hvor 4 av bitene blir brukt. Disse 4 bitene representerer minimal forsinkelse, maksimal pålitelighet, maksimal gjennomgang og minimal kostnadsforbruk (mest nødvendige pakker blir sendt.) 
+
+▪   Total Length (TL) (16 bits) 
+
+Denne representerer den totale lengden av IP datagrammet i bytes. Minimum lengde er 20 bytes (kun header) mens den maksimale er 65535 bytes. Den maksimale størrelsen er vert er påkrevd å kunne håndtere er 576 tegn, men de aller fleste moderne verter kan håndtere mye større pakker.
+
+▪   Identification (16 bits) 
+Identification brukes til å identifisere hvert enkelt fragment av ei IP-pakke. Denne verdien øker hver gang ei IP-pakke sendes fra kilden til destinasjonen. Dette feltet kan være hjelpsomt hvis man skal sette sammen fragmenterte IP-pakker. 
+
+▪   Flags (3 bits) 
+
+Dette feltet består av tre bits, den første biten blir ikke brukt til noe særlig, mens de to neste har to viktige roller. Den andre biten representerer «ikke fragmenter» biten. Når denne biten er klarert blir aldri IP-datagrammet fragmentert, den forsvinner heller dersom fragmentering kreves. Den tredje biten representerer et fragmentert IP-datagram.
+
+▪   Fragment Offset(13 bits)
+
+Kort sagt blir dette feltet brukt til å re montere et fragmentert IP-datagram. 
+
+
+
+▪   Time to live (TTL) (8 bits)
+
+Denne verdien representerer antall hopp IP-datagrammet vil gå gjennom før det blir forkastet. Verdien til dette feltet er i begynnelsen satt til 32 eller 64 men for hvert hopp minsker verdien med 1. Når feltet til slutt har blitt 0 vil datagrammet bli forkastet. Så vi ser at TTL bokstaveligtalt betyr datagrammets levetid på et nettverk. 
+
+▪   Protocol (8 bits)
+
+Dette feltet representerer TCP’en (Transport Control Protocol) som overfører data til IP-laget. Dette feltet blir nyttig når data blir splittet og IP’en må vite hvilken protokoll data skal transporteres til. 
+
+▪   Header Checksum (16 bits)    
+
+Dette feltet representerer en verdi som er beregnet ved hjelp av en algoritme som dekker alle feltene i header. Denne verdien blir kalkulert og lagret i header når IP-datagram blir sendt fra kilde til mottaker. Mottaker (destinasjon) kalkulerer igjen «checksummen» og sammenlikner opp mot header. Hvis verdien er den samme betyr det at datagrammet ikke var korruptert hvis ikke antar destinasjonen at data ble mottatt korruptert. Så feltet er ment for å sjekke hvordan IP-datagrammet ble mottatt. 
+
+▪   Source Adress (32 bits) og  
+▪   Destination Adress (32 bits)
+
+Disse feltene lagrer kilde-adressen og destinasjon-adressen. Siden kilde og destinasjonsadressen har 32 bits hver ser vi at et IP-adresse operativsystem på maksimalt 32 bits kan brukes, noe som begrenser antall adresser tilgjengelig. Det er dette problemet som IPv6 blant annet ble lagd for å takle. 
+
+2)
+Source og destination address er 32 bits i IPv4, mens det er 128 bits i IPv6. Som gjør at antall adresser blir noe sånn som: 3.4x1038
+
+Oppgave 1 
+Velg den første ICMP-pakken som er sendt fra din maskin. Trykk på pluss-tegnet foran «Internet protocol» i det midterste vinduet i Wireshark, slik at vi får utforsket denne. Hva er IP-adressen til din maskin? 
+IP-adressen til min maskin er: 10.224.211.221
+
+2) Det er et felt som heter «Protocol». Dette feltet har en verdi som indikerer hva slags protokoll som blir sendt over IP-laget. Hva er verdien på dette feltet og hva forteller den oss? 
+Verdien på dette feltet er: ICMP (1). Den forteller oss at den bruker ICMP (internet control message protocol) protokoll som blir sendt over IP-laget.
+
+3) Hvor mange bytes er det i IP-headeren? 
+Det er 20 bytes i IP-headeren.
+
+4) Er dette IP-datagrammet fragmentert? Forklar hvordan du kom frem til om det er fragmentert eller ikke. 
+Feltet i flags: More Fragments: not set.  Forteller oss at IP-datagrammet ikke er fragmentert.
+
+5) Denne pakken er fragmentert, men hvordan kan du se det? 
+Feltet i Flags: Fragment offset set = 2960. Siden den ikke er 0, betyr det at pakken er fragmentert. 
+
+6) Finn det første fragmentet av det fragmenterte IP-datagrammet (Det vil ha IP som protokoll i Wireshark, så da må du fjerne ”&& icmp” fra filteret hvis du satte det på) 
+a) Hvilken informasjon i IP-headeren indikerer at datagrammet er fragmentert? 
+Feltet i Flags: More Fragments: set, forteller oss at datagrammet er fragmentert. 
+
+b) Hvilken informasjon i IP-headeren indikerer at dette er det første fragmentet? 
+Fragment offset: 0 forteller at dette er det første fragmentet.
+
+c) Hvor mange byte med data ble sendt med dette IP-datagrammet?
+Med dette IP-datagrammet ble det sendt 1500 bytes, inkludert med IP-headeren på 20 bytes. 
+
+7) Finn det andre fragmentet av det fragmenterte IP-datagrammet.
+a) Hvilken informasjon i IP-headeren indikerer at dette ikke er det første fragmentet?
+Vi vet at dette ikke er det første fragmentet siden feltet; Fragment offset: 1480
+
+b) Hvordan vet du om det er flere fragmenter?
+Jeg vet at det er flere fragmenter siden feltet; More fragments: set. Når more fragments har verdien set, så betyr det at det er flere fragmenter. 
+
+8) Hvor mange fragment ble opprettet i fra det originale datagrammet på 3500 bytes? Det ble opprettet fire pakker fra det orginale datagrammet på 3500 bytes. 
+ 
+
+
+Kilder:
+
+Arora, Himanshu (2012) IP protocol header fundamentals explained with diagrams.
+Hentet 13.04.15, fra http://www.thegeekstuff.com/2012/03/ip-protocol-header/
+Wikipedia, den frie encyklopedi (Sist endret 2014) IPv4. Hentet 13.04.15, fra http://no.wikipedia.org/wiki/IPv4
+
