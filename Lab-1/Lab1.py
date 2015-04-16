@@ -32,14 +32,14 @@ gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
 #    (./
 #     '` 
 def ascii_fugl():
-	print """ 
-       \/_
-  \,   /( ,/
-   \\\' ///
-    \_ /_/
-    (./
-     '` 
-	"""
+
+print '        \/_'
+print '    \,  /(  ,/'
+print '     \\\\\\\' ///'
+print '      \\_ /_/ '
+print '      (./ '  
+print '       \'` '
+
 ascii_fugl()
 
 # 
