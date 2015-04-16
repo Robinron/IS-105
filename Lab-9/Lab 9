@@ -1,0 +1,73 @@
+Lab 9
+
+Teori
+
+a) CSMA/CD definerer en regel for hvor lenge en enhet skal vente hvis en kollisjon hender.
+
+a)CSMA/CD har flere moduser, men vi skal kun forklare hvordan Ethernet modusen fungerer. I 
+Ethernet modusen ventes det til et medium er inaktivt før data blir overføres.
+
+
+b)  At Ethernet er forbindelsesløst betyr at ikke er noen bekeftelse mellom sending og mottakelse.
+Det som menes med at Ethernet er upålitelig er at det å motta NICs ikke sender tilbake acks eller nacks til senderen-
+
+ 
+c)     Preamble er en frame som består av 7 bytes som består av kombinasjoner av 1 og 0. Den gjør det mulig for enheter i et nettverk til å synkronisere sine mottaker klokker på en enkel måte.
+ 
+      d)    Type feltet indikerer lengden på rammens data eller identifiserer protokoll stablen som er bundet til rammen.
+ 
+e)     
+DATA: Data er nyttelastpakken.
+ 
+CRC: Brukes til å oppdage uheldige endringer ved raw data.
+ 
+SOURCE ADRESS: Består av 6 bytes og inneholder MAC adresser til port kilden.
+        	
+DEST. ADRESS: som SOURCE består den av 6 bytes og inneholder MAC adressen til port destinasjon.
+        	
+ 
+
+http://en.wikipedia.org/wiki/Ethernet_frame#Payload
+ 
+http://en.wikipedia.org/wiki/Cyclic_redundancy_check
+
+
+ 
+ 
+
+
+
+Lab
+
+a) 48-bit Ethernet-adressen til min maskin: 18:cf:5e:80:3d:1b
+b) 48-bit Ethernet-adressen til mottaker: 00:08:e3:ff:fd:b8
+c) Enheten som har denne Ethernet-adressen er den trådløse routeren som er her på skolen. Den videresender forespørselen til den endelige mottakeren. 
+d) Den hexadesimale verdien i feltet for frame-type er: 0x0800, og den forteller oss at den inneholder et IPv4 datagram.
+e) Ethernet headeren er på 14 bytes. TCP og IP header er på 20 bytes hver, så totalt 54 bytes. Selve “G” i HTTP GET starter på 55.
+f) Ethernet-source adressen i HTTP-response meldingen er: 00:08:e3:ff:fd:b8.
+g) Enheten som har denne Ethernet-adressen er den trådløse routeren som er her på skolen som mottar svaret før det videresendes til min PC.
+h) Destination adressen er: 18:cf:5e:80:3d:1b
+i) Ja, dette er adressen til min maskin.
+
+
+ARP-Caching
+a) Bilde 1
+b) Bilde 2 og 3
+
+3) 
+Den hexadesimale verdien i feltet for frame-type i Ethernet II-laget er: 0x0806 som signaliserer at dette er ARP.
+Ethernet headeren er 14 bytes. Deretter er det 6 bytes før ARP-opcode begynner. Det er altså 20 bytes fra starten av rammen til der ARP-opcode begynner. 
+Dersom flere noder har samme IP-adresse kan man få flere svar/ARP-pakker enn man har forespurt. 
+Verdien på opcode-feltet i requesten jeg sendte er: 0x0001(hex) eller 1 som betyr at det er en request. 
+Ja, ARP meldingen inneholder IP adressen til både avsender og mottaker.
+Fordi det er en request melding, og ved en forespørsel kan ikke maskinen vite Ethernet-adressen til maskinen jeg pinger. Den kan derimot vite sin egen adresse og oppgir den samt IP-adressene. 
+Verdien på opcode-feltet i replyen er: 0x0002 (hex) eller 2 som betyr at det er en reply.
+Fordi det er destinasjonen som har svart i reply og dermed kommer Ethernet-adressen med der. Grunnen til at det står i reply og ikke i request er at når min maskin sender en forespørsel til en annen maskin kan ikke min maskin vite Ethernet-adressen til mottakeren. Denne informasjonen sendes med svaret tilbake til min maskin.
+
+
+Kilder:
+
+Wallen, Jack (2011) Quick Tips: Flush the ARP cache in Windows 7 hentet 14.04.15, fra http://www.techrepublic.com/blog/windows-and-office/quick-tips-flush-the-arp-cache-in-windows-7/ 
+
+
+Wikipedia, den frie encyklopedi (Sist endret 2015) Ethernet Frame. Hentet 14.04.15, fra http://en.wikipedia.org/wiki/Ethernet_frame
