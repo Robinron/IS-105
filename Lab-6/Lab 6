@@ -9,7 +9,8 @@ Tallene nedenfor er antall sekunder fra capture er startet, det første tallet e
 
 
 Tiden fra GET til OK er tiden det tar å laste informasjonen man forespør. "GET" er når man begynner 
-å hente informasjon fra serveren, "OK" er når informasjonen er lastet inn.
+å hente informasjon fra serveren, "OK" er når informasjonen er lastet inn. 
+(Feil eller mangler på konklusjon iflg. tilbakemelding på fronter)
 
 
 b) feltene i http
@@ -49,6 +50,7 @@ og om du ikke har besøkt siden tidligere er ikke dette relevant.
 
 b) Når man inspiserer responsen og tar «follow TCP stream» vil man se hvilket svar man får fra serveren. 
  Her ser man innholdet som blir lastet når man kommer inn på siden.  
+ (Det finnes andre/enklere måter å se dette på ifølge tilbakemeldingen på fronter, hvordan?)
  
 c) Grunnen til at IF-MODIFIED-SINCE er med her er at nå har vi allerede besøkt siden.
 Om siden ikke har blitt endret så ligger det en versjon i nettleserens cache som den kan laste inn. 
@@ -57,3 +59,5 @@ Verdien i feltet er dato og klokkeslett for sist gang siden ble lastet inn / sis
 d) Her henter man ikke data fra serveren. Det blir kontrollert om siden er modifisert fra sist besøk, 
 og hvis den ikke er det (slik som i dette tilfellet), vil serveren kun respondere med at siden ikke er endret, 
 og nettleseren vil laste den samme versjonen som du besøkte sist. Siden som lastes er versjon som er lagret i nettleserens cache.
+
+(Mangler kildehenvisninger)
