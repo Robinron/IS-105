@@ -62,7 +62,7 @@ Verdien på dette feltet er: ICMP (1). Den forteller oss at den bruker ICMP (int
 Det er 20 bytes i IP-headeren.
 
 4) Er dette IP-datagrammet fragmentert? Forklar hvordan du kom frem til om det er fragmentert eller ikke. 
-Feltet i flags: More Fragments: not set.  Forteller oss at IP-datagrammet ikke er fragmentert.
+Feltet i flags: More Fragments: not set.  Forteller oss at IP-datagrammet ikke er fragmentert. Itillegg kan du se at det er 0 fragmenter ifølge wireshark.
 
 5) Denne pakken er fragmentert, men hvordan kan du se det? 
 Feltet i Flags: Fragment offset set = 2960. Siden den ikke er 0, betyr det at pakken er fragmentert. 
