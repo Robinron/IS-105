@@ -7,7 +7,7 @@ Intel(R) Core(TM) i5-4200U CPU @ 1.60GHz
 Lab2_svar.txt
 
 Forskjellen mellom desimaltall og romertall rent designmessig er at romertall bruker det vi i dag kjenner som latinske bokstaver
-for matematiske uttrykk. Det romerske tallsystemet dannet grunnlaget for dagens latinske alfabet. 
-En grunnleggende forskjell er at det "sifferet" med høyest verdi blir satt til høyre i rekken, hvor mindre "siffer" blir satt til venstre i rekken dersom man skal trekke fra for å få et nummer av mindre verdi.
-f.eks V = 5, VI = 6, og IV = 4. Man må konstant regne seg fram til det endelige tallet istedefor å kunne lese det rett av slik vi gjør med det konvensjonelle 10-talls desimaltallsystemet. 
+for matematiske uttrykk. Det romerske tallsystemet dannet grunnlaget for dagens latinske alfabet. Tallene blir satt i rekkefølger der de høyeste kommer først.
+En grunnleggende forskjell er at det "sifferet" med høyest verdi blir satt til høyre i rekken (f.eks I blir satt før V eller X), hvor mindre "siffer" blir satt til venstre i rekken dersom man skal trekke fra for å få et nummer av mindre verdi. Dette for å unngå at man får for mange av det samme tall.
+f.eks V = 5, VI = 6, og IV = 4. Man må konstant regne seg fram til det endelige tallet istedenfor å kunne lese det rett av slik vi gjør med det konvensjonelle 10-talls desimaltallsystemet. 
 Disse faktorene gjør ofte at man får lange bokstavrekker uten at tallet egentlig blir særlig stort, dermed blir romertallsystemet kontra desimaltallsystemet svært upraktisk når man skal regne ut store tall. eks. MMMXXXV = 3035. 
