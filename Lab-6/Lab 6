@@ -1,16 +1,13 @@
 Lab 6
 Oppgave 1
 
-a) tid fra http-get til http-ok 
+a) Tid fra http-get til http-ok 
 Pga. problemer med å finne http på eksempellinken valgte vi å gå inn på www.uia.no
 Tallene nedenfor er antall sekunder fra capture er startet, det første tallet er http-get, det andre tallet er http-ok. 
 1.25 -> 3.58 (text/html) 3.58 - 1.25 = 2.33 sekunder fra http-get til http-ok
 4.19 -> 4.38 (application/json)  4.38 - 4.19= 0.19 sekunder fra http-get til http-ok
 
-
-Tiden fra GET til OK er tiden det tar å laste informasjonen man forespør. "GET" er når man begynner 
-å hente informasjon fra serveren, "OK" er når informasjonen er lastet inn. 
-(Feil eller mangler på konklusjon iflg. tilbakemelding på fronter)
+En http-klient sender en http-forespørsel til en server. Verdien kan vi bruke til å finne ut hvor lang tid det tar fra vi sender forespørselen til serveren gir oss en respons.
 
 
 b) feltene i http
@@ -44,20 +41,15 @@ Content-Type: datatypen som skal returneres, f.eks. text/html; charset=utf-8
 
 Oppgave 2
 
-a) IF-MODIFIED-SINCE skal ikke være med her fordi du ikke har besøkt siden tidligere. 
-IF-MODIFIED-SINCE skal sjekke om siden har vært endret siden sist gang du besøkte siden, 
-og om du ikke har besøkt siden tidligere er ikke dette relevant.
+a) IF-MODIFIED-SINCE skal ikke være med her fordi du ikke har besøkt siden tidligere. IF-MODIFIED-SINCE skal sjekke om siden har vært endret siden sist gang du besøkte siden, og om du ikke har besøkt siden tidligere er ikke dette relevant.
 
-b) Når man inspiserer responsen og tar «follow TCP stream» vil man se hvilket svar man får fra serveren. 
- Her ser man innholdet som blir lastet når man kommer inn på siden.  
- (Det finnes andre/enklere måter å se dette på ifølge tilbakemeldingen på fronter, hvordan?)
+b) Når man inspiserer responsen og tar «follow TCP stream» vil man se hvilket svar man får fra serveren.  Her ser man innholdet som blir lastet når man kommer inn på siden. Man ser også dette på http-koden man får i retur, f.eks. vil man få http kode 200 som tilsier at den er ok. 
  
-c) Grunnen til at IF-MODIFIED-SINCE er med her er at nå har vi allerede besøkt siden.
-Om siden ikke har blitt endret så ligger det en versjon i nettleserens cache som den kan laste inn. 
-Verdien i feltet er dato og klokkeslett for sist gang siden ble lastet inn / sist gang du besøkte siden.
+c) Grunnen til at IF-MODIFIED-SINCE er med her er at nå har vi allerede besøkt siden. Om siden ikke har blitt endret så ligger det en versjon i klientens cache som den kan laste inn fremfor å hente en ny versjon fra serveren. Verdien i feltet er dato og klokkeslett for sist gang siden ble lastet inn / sist gang du besøkte siden.
 
-d) Her henter man ikke data fra serveren. Det blir kontrollert om siden er modifisert fra sist besøk, 
-og hvis den ikke er det (slik som i dette tilfellet), vil serveren kun respondere med at siden ikke er endret, 
-og nettleseren vil laste den samme versjonen som du besøkte sist. Siden som lastes er versjon som er lagret i nettleserens cache.
+d) Her henter man ikke data fra serveren. Det blir kontrollert om siden er modifisert fra sist besøk, og hvis den ikke er det (slik som i dette tilfellet), vil serveren kun respondere med at siden ikke er endret,  og nettleseren vil laste den samme versjonen som du besøkte sist. Siden som lastes er versjon som sist ble lagret i klientens cache.
 
-(Mangler kildehenvisninger)
+Kildehenvisning:
+http://en.wikipedia.org/wiki/HTTP_compression , April 2015
+http://en.wikipedia.org/wiki/List_of_HTTP_header_fields , April 2015
+https://www.webmasterworld.com/new_web_development/3815112.htm , Mai 2015
