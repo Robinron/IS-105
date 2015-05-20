@@ -1,0 +1,100 @@
+LAB 7
+Teori:
+TCP heading:
+•	Source Port: 16 bit nummer som identifisere source port number, altså avsenderen.
+•	Destination Port: 16 bit nummer som identifisere destination port number (mottakeren).
+•	Sequence Number: 32 bit. Sekvensnummeret har en dobbel rolle. Om SYN-flagget er satt til (1), så er dette det initielle sekvensnummeret. Nummeret til den første faktiske data byte er dette nummeret +1. Hvis SYN-flagget er satt til (0) så er dette det akkumulerte sekvensnummeret av den første data-byten av dette segmentet i denne sesjonen/økten.
+•	Acknowlegdment Number: 32 bit felt som indikere det neste sekvens nummeret som senderens enhet forventer fra de andre enhetene.
+•	Data Offset: 4 bit. Spesifiserer nummeret av 32-bit-ord av data i TCP headeren. Med andre ord er denne verdien gange 4 = det nummeret av bytes i headeren, som alltid må være multiplisert av 4. Det kalles en “data offset” siden den indikerer hvor mange 32-bit ord starten av data som er offset, fra begynnelsen av TCP segmentet. 
+•	Reserved: 4 bit. Reservert for fremtidig bruk, og skal settes til null.
+•	TCP flags: 8 bit, styrebiter som indikerer forskjellige tilkoblingsstatuser eller informasjon om hvordan en pakke skal håndteres.
+•	Window: 16 bit, Størrelsen på mottakvsvinduet som angir antall window enheter (angitt i bytes) som senderen av segmentet er villig til å motta.
+•	Checksum: 16 bit feltet er brukt til feilsjekking for headeren og data
+•	Urgent pointer: 16 bit, om URG-flagget er satt så er dette 16-bit feltet en offset fra sekvensnummeret som indikerer den siste viktige data-byten.
+•	TCP Options: 32 bit. Lengden på dette feltet er bestemt av data offset feltet. Options har opptil tre felt: Option-Kind (1 byte), Option-Length (1byte), Option-Data (variabel). Option-Kind feltet indikerer typen av option, og er det eneste feltet som ikke er valgfritt. Avhengig av hvilken type av option vi møter, så er de neste to feltene satt. Option-Length feltet indikerer den totale lengden til option, og Option-Data feltet inneholder verdien til den aktuelle option. 
+Kilder: http://en.wikipedia.org/wiki/Transmission_Control_Protocol
+
+Spørsmål:
+
+1. Hva er IP-adressen og TCP-portnummeret som din maskin (source) bruker for å
+overføre filen til gaia.cs.umass.edu?
+
+IP(v4)-adresse: 158.37.244.233
+TCP-portnummer(source): 62044
+
+2. Hva er IP-adressen og portnummeret som gaia.cs.umass.edu bruker for å motta filen?
+
+IP(v4)-adresse: 128.119.245.12
+TCP-portnummer(destination): 80
+
+3.
+
+a) Hva er Sequence number i TCP SYN-segmentet som blir brukt for å opprette
+TCP-forbindelsen mellom din maskin og gaia.cs.umass.edu?
+
+Sequence number: 0
+
+b) Hvilket element i headeren er det som forteller deg at dette er det første
+segmentet i en three-way-handshake?
+
+SYN-flagget. 
+Dette er satt til 1 og indikerer at dette er et SYN-segment og dermed en del av en three-way-handshake(SYN, SYN-ACK, ACK)
+
+4.
+a) Hva er Sequence number i SYN ACK-segmentet som er sendt fra
+gaia.cs.umass.edu til din maskin som svar på SYN?
+
+Sequence number: 0
+
+
+b) Hvilket element i headeren er det som forteller deg at dette er det andre
+segmentet i en thre-way-handshake?
+
+SYN og ACK flagget. 
+Disse er satt til 1 og indikerer at dette er et SYNACK-segment og dermed en del av en three-way-handshake(SYN, SYN-ACK, ACK)
+
+
+
+5. Feltet «next sequence number» i Wireshark finnes ikke i selve TCP-headeren. Feltet
+står der kun for at Wireshark vet hva det neste «sequence number» vil være. Kikk på
+segmentet som har «sequence number» 1. Hvordan kan du vite hva neste «sequence
+number» er uten å bruke «next sequence number» som Wireshark har laget?
+
+Ved å legge sammen sequence number og TCP sequence length finner man next sequence number.
+Eks: 
+[TCP Segment Len: 649]
+Seq: 1
+Da blir neste sequence number 650.
+
+6. Bruk en samlet tabell for a, b, og c. Se eksempel under
+
+a) Gå ut i fra at TCP-segmentet som inneholder HTTP POST er det første segmentet i
+selve filoverføringen. Skriv ned ”Sequence number” på de seks første pakkene du
+har sendt i fra deg. Skriv også ned verdien i time-kolonnen.
+
+b) Nå som vi har funnet de seks første pakkene vi sendte i fra oss, gjør vi det samme
+for de seks første pakkene vi mottok. Tegn opp i tabell som viser hvordan sending
+og mottak hører sammen. Husk at aknowledgement number fra mottaker peker på
+det som er ”next sequence number” i pakken som ble sendt fra deg. Se tabell under
+for hjelp til oppsett. Time er fra Time-kolonnen i wireshark.
+
+c) Nå som du har en tabell med Sequence-number, Aknowledgement number og tid,
+kan du finne RTT (Round trip time). Sett dette også inn i tabellen. Det holder med
+to desimaler. 
+
+
+
+
+
+Sequence 	Time 		Acknowledgement 	Time 			RTT
+1 		4.68879500    650    			4.82251300 		0,13371800
+650 		4.68902800 	2110			4.82443100 		0,13540300
+2110 		4.68903900 	3570			4.82576300 		0,13672400
+3570 		4.68904500 	5030 			4.82689100 		0,13784600
+5030 		4.82258900 	6490 			4.95417200 		0,14158300
+6490 		4.82449700 	7950 			4.95835200 		0,13385500
+Kilder:
+https://doc.pfsense.org/index.php/What_are_TCP_Flags, 22.04.2015
+http://www.freesoft.org/CIE/Course/Section4/8.htm 22.04.2015 
+
+
