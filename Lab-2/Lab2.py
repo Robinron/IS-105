@@ -2,7 +2,7 @@
 import re
 import math
 
-
+# Koden er hentet fra "http://codereview.stackexchange.com/questions/902/conversion-from-to-roman-numbers"
 # Regular expression used to validate and parse Roman numbers
 roman_re = re.compile("""^
    ([M]{0,9})   # thousands
