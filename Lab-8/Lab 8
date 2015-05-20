@@ -84,7 +84,7 @@ Vi vet at dette ikke er det første fragmentet siden feltet; Fragment offset: 14
 b) Hvordan vet du om det er flere fragmenter?
 Jeg vet at det er flere fragmenter siden feltet; More fragments: set. Når more fragments har verdien set, så betyr det at det er flere fragmenter. 
 
-8) Hvor mange fragment ble opprettet i fra det originale datagrammet på 3500 bytes? Det ble opprettet fire pakker fra det orginale datagrammet på 3500 bytes. 
+8) Hvor mange fragment ble opprettet i fra det originale datagrammet på 3500 bytes? Avstanden på ICMP pakkene i bildet forteller oss at det ble opprettet tre pakker fra det orginale datagrammet på 3500 bytes. 
  
 
 
