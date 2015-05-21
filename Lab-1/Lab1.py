@@ -8,6 +8,7 @@
 #
 #
 import sys
+import psutils
 
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
 gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
@@ -116,14 +117,24 @@ def ascii8Bin(bokstav):
 #                01001000
 #                01101001
 #	 Forklart hver linje i denne funksjonen (hva er list, hva gjør in)
+#    Først definerer vi funksjonen og legger inn at den trenger input som er string
+#    Deretter lager vi en variabel som er en liste av string.
+#    Så bruker vi løkken til å hente ut bokstavene av type string
+#    Til slutt returneres strengene formatert ved hjelp av vår ascii8Bin funksjon.
+#    
 #	 Skriv selv inn tester ved å bruke assert i funksjonen test()
 #
 def transferBin(string): 
 	l = list(string)
 	for c in l:
-            print ascii8Bin(c)
+            return ascii8Bin(c)
+            
+#   Her blir blokkene returnert i stedet for skrevet ut. 
+#   Grunnen til dette er at dersom koden ikke returnerer noe vil ikke assert-setningen vår i test() funksjonen gå gjennom
+#   Dersom vi endrer return her til print vil blokkene bli skrevet ut men ikke gå gjennom testen          
 
-	    
+
+
 
 	   
 
@@ -140,7 +151,7 @@ def transferBin(string):
 def ascii2hex(bokstav):
     hexb = ord(bokstav)
     toHex ="{0:02x}".format(hexb)
-    print(toHex)
+    return(toHex)
     
  
 
@@ -148,23 +159,22 @@ def ascii2hex(bokstav):
 def transferHex(string):
 	l = list(string)
 	for c in l:
-            print "Den heksadesimale representasjonen for %s" % c
-            ascii2hex(c)
+            return ascii2hex(c)
+
+
+#   Her blir den heksadesimale representasjonen returnert i stedet for skrevet ut. 
+#   Grunnen til dette er at dersom koden ikke returnerer noe vil ikke assert-setningen vår i test() funksjonen gå gjennom
+#   Dersom vi endrer return her til print vil blokkene bli skrevet ut men ikke gå gjennom testen         
     
-transferHex("Hi")
 
 #
 # Oppgave 8
 # 		Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
 # 		Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
 def unicodeBin(bokstav):
-#	desimal = ord(bokstav)
-	tilBin = '{0:08b}'.format(229) #229 er desimaltallet for å
-	print(tilBin)
-	
-#print "å som binært er"
+    return '{0:08b}'.format(ord(bokstav.decode('utf8')))
 
-#unicodeBin('å')
+
 
 #
 # Oppgave 9
@@ -186,6 +196,7 @@ def unicodeBin(bokstav):
 #
 def printSysInfo():
 	pass
+#  Det er dette som mangler
 
 
 def test():
@@ -194,10 +205,10 @@ def test():
 	assert bitOr(0, 1) == 1
 	assert ascii8Bin('B') == '01000010'
 	assert ascii8Bin('C') == '01000011'
-	assert transferBin('Hi') == {'01001000', '01101001'}
-#   assert transferHex('Hi') == [00000048, 00000069]    Våre tester
-#	assert unicodeBin('å') == '11100101' Denne skal være slik
-	# Dine egne tester
+	assert transferBin('Hi') == '01001000', '01101001'
+	assert ascii2hex('H') == '48'
+	assert transferHex('Hi') == '48', '69'
+	assert unicodeBin('å') == '11100101' 
 	return "Testene er fullført uten feil."
 
 
