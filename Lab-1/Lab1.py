@@ -11,7 +11,7 @@ import sys
 
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
 gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
-			'student2': 'Ricky Omland', \
+            'student2': 'Ricky Omland', \
             'student3': 'Kojar Baban', \
             'student4': 'Lars Vatne', \
             'student5': 'Cuong Bui', \
@@ -54,10 +54,7 @@ ascii_fugl()
 def bitAnd(x, y):
     print "%d AND %d" %(x, y)
     return x&y
-    
-test1 = bitAnd(6, 5)
 
-print "Test1 = %d" %test1 
 
 
 
