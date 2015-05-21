@@ -27,6 +27,24 @@ Lowercase å E5, uppercase C5
 Upper har nøyaktig én verdi lavere enn lowercase, som de øvrige i ASCII tegnsettet.
 
 
+oppgave 7
+Først må vi se litt på forskjellen mellom UPD og TCP for å vite hvorfor vi  valgte den ene framfor den andre.
+
+Med TCP så er man sikret at alle pakkene kommer fram og i riktig rekkefølger som man sender, skulle det ankomme i feil rekkefølge 
+vil TCP reangere til det riktige. Dette fører også da til lavere hastighet, man kan si at sikkerhet og kvalitet går utover effektivitet. 
+Pakkene som sendes er også større enn UDP, det blir da mer også mer trafikk for å sjekke om overføringen er riktige.
+
+UDP har ikke faste ordre ettersom alle pakkene er uavhengige av hverandre. Grunnen til at UDP er raskere enn TCP er fordi det
+er ikke noe feilsøking for pakker, det er heller ikke noe garanti for at pakkene kommer fram. Alle pakkene er sendt individuelt 
+og kvaliteten bli først sjekket når de har ankommet. Passer ideelt hvis hastighet er viktigere enn kvalitet.
+
+TCP protokoller passer for applikasjoner som krever stabile og sikker overføring der tiden spiller ikke så stor rolle. 
+UDP er mer basert på rask og og effektiv overføringer, passer til applikasjoner som krever raske overføringer som feks 
+online spill.
+
+I denne laben har vi valgt å bruke UDP, grunnen er at mengden og størrelsene på pakkene som vi sender er såpass liten at det er 
+liten fare for eventuelle feil, og i denne labben skulle vi også måle hastigheten når meldinger blir overført, så da var det mer hensiktsmessig
+med en rask protokoll.
 
 
 Oppgave 5-7 ikke gjort
