@@ -33,12 +33,12 @@ gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
 #     '` 
 def ascii_fugl():
 
-print '        \/_'
-print '    \,  /(  ,/'
-print '     \\\\\\\' ///'
-print '      \\_ /_/ '
-print '      (./ '  
-print '       \'` '
+    print '        \/_'
+    print '    \,  /(  ,/'
+    print '     \\\\\\\' ///'
+    print '      \\_ /_/ '
+    print '      (./ '  
+    print '       \'` '
 
 ascii_fugl()
 
@@ -52,7 +52,6 @@ ascii_fugl()
 #					er 4 desimalt. Antagelse: posisjonsbasert tallsystem og 
 #					den mest signifikante bit-en er lengst til venstre
 def bitAnd(x, y):
-    print "%d AND %d" %(x, y)
     return x&y
 
 
@@ -64,12 +63,8 @@ def bitAnd(x, y):
 #    Eksempel: bitXor(4, 5) = 1
 #
 def bitXor(x, y):
-    print "%d XOR %d" % (x, y)
     return x^y
 	
-test2 = bitXor(6, 5)
-
-print "Test2 = %d" %test2
 
 #
 #  Oppgave 4
@@ -77,12 +72,8 @@ print "Test2 = %d" %test2
 #    Eksempel: bitOr(0, 1) = 1
 #
 def bitOr(x, y):
-    print "%d OR %d" % (x, y)
     return x|y
 
-test3 = bitOr(6, 5)
-
-print "Test3 = %d" %test3
 
 #
 #  Oppgave 5
@@ -102,19 +93,21 @@ print "Test3 = %d" %test3
 #      b konverterer tallet til dets binære representasjon
 #
 #	 Hvilke begrensninger vil en slik funksjon ha? (tips: prøv med bokstaven 'å', f.eks.)
+#    Svar: Ved bruk av denne funksjonen vil det være begrensninger innad i ascii biblioteket som er det eneste som støttes her. 
+#    Norske bokstaver er ikke inkludert i dette, og vi vil dermed få en feilmelding.
+#
 #	 Forklar resultatet ascii8Bin('å')
+#    Svar: Når vi forsøker å kjøre ascii8Bin('å') får vi feilmeldingen: "TypeError: ord() expected a character, but string of length 2 found"
+#    Dette da fordi norske bokstaver som sagt ikke er inkludert i ascii-biblioteket.
+#
 #	 Hvilke faktorer påvirker resultatet? Forklar.
+#    Svar: Ascii sitt bibliotek. 
+#    Vi må derfor bruke tegn som er inkludert i dette for å unngå feil.
 #
 def ascii8Bin(bokstav):
 	binobjekt = ord(bokstav)
-	tilBin = '{0:08b}'.format(binobjekt)
-	print(tilBin)
+	return '{0:08b}'.format(binobjekt)
 	
-print "B som binært er"
-
-ascii8Bin('B')
-	
-
 # 
 #  Oppgave 6
 #    transferBin - ta en tilfeldig streng som argument og skriver ut en blokk av 8-bits strenger
@@ -128,10 +121,13 @@ ascii8Bin('B')
 def transferBin(string): 
 	l = list(string)
 	for c in l:
-		print "Den binære representasjonen for %s" % c
-		ascii8Bin(c)
-		
-transferBin("Hello")
+            print ascii8Bin(c)
+
+	    
+
+	   
+
+
 
 #
 #  Oppgave 7
@@ -143,8 +139,10 @@ transferBin("Hello")
 #  
 def ascii2hex(bokstav):
     hexb = ord(bokstav)
-    toHex ="{0:08x}".format(hexb)
+    toHex ="{0:02x}".format(hexb)
     print(toHex)
+    
+ 
 
 
 def transferHex(string):
@@ -164,9 +162,9 @@ def unicodeBin(bokstav):
 	tilBin = '{0:08b}'.format(229) #229 er desimaltallet for å
 	print(tilBin)
 	
-print "å som binært er"
+#print "å som binært er"
 
-unicodeBin('å')
+#unicodeBin('å')
 
 #
 # Oppgave 9
@@ -194,17 +192,15 @@ def test():
 	assert bitAnd(6, 5) == 4
 	assert bitXor(4, 5) == 1
 	assert bitOr(0, 1) == 1
-#	Fikk ikke til å kjøre alle testene selv om vi testet selv at funksjonene kjørte
-#	assert ascii8Bin('B') == 01000010
-#	assert ascii8Bin('C') == 01000011
-#	assert transferBin('Hello') == {01001000, 01100101, 01101100, 01101100, 01101111}
-#       assert transferHex('Hi') == [00000048, 00000069]
-#	assert unicodeBin('å') == '11100101'
+	assert ascii8Bin('B') == '01000010'
+	assert ascii8Bin('C') == '01000011'
+	assert transferBin('Hi') == {'01001000', '01101001'}
+#   assert transferHex('Hi') == [00000048, 00000069]    Våre tester
+#	assert unicodeBin('å') == '11100101' Denne skal være slik
 	# Dine egne tester
 	return "Testene er fullført uten feil."
 
 
 # Bruk denne funksjonen for å vise at alle testene er kjørt feilfritt
-#print test()
 print test()
 		
