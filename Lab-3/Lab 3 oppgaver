@@ -46,5 +46,7 @@ I denne laben har vi valgt å bruke UDP, grunnen er at mengden og størrelsene p
 liten fare for eventuelle feil, og i denne labben skulle vi også måle hastigheten når meldinger blir overført, så da var det mer hensiktsmessig
 med en rask protokoll.
 
+http://www.diffen.com/difference/TCP_vs_UDP
+
 
 Oppgave 5-6 ikke gjort
