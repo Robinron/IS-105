@@ -1,41 +1,42 @@
 # -*- coding: latin-1 -*-
 
-import socket   #for sockets
-import sys  #for exit
+import socket #For sockets.
+import sys #For exit.
+import lab2 #Importerer lab2 for å kunne bruke roman2dec funksjon. 
 
-gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
-            'student2': 'Ricky Løtoft Omland', \
-            'student3': 'Cuong Bui', \
-            'student4': 'Kojar Heresh Baban', \
-            'student5': 'Lars Ole Vatne', \
-            'student6': 'Sondre Flovik', \
-}
- 
 # Lager dgram udp socket
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 except socket.error:
-    print 'Failed to create socket'
+    print 'Feilet å lage socket'
     sys.exit()
- 
+#Legger til en feilmelding og går ut av systemet dersom en error oppstår.      
 host = 'localhost';
+#Definerer et navn til serveren.
 port = 8888;
- 
- 
+
 while(1) :
-    msg = raw_input('Enter message to send : ')
-     
-    try :
-        #Sett string
+    try: 
+        msg = raw_input('Fra lower to uppercase : ')
+        #Prompt, bruker setter en input. 
         s.sendto(msg, (host, port))
-         
-        # motta data fra client(data, addr)
         d = s.recvfrom(1024)
         msg_send = d[0]
         addr = d[1]
-        
+        #Sender input med lowercase bokstaver til serveren. 
         print msg_send
         
-        #print ' '.join(format(ord(x), 'b') for x in reply)
-    except socket.error, msg:
+        
+        romanTo = raw_input ('Roman til desimal : ')
+        s.sendto(romanTo, (host, port))
+        e = s.recvfrom(1024)
+        msg_send = e[0]
+        addr = e[1]
+        #Sender input med romersk tall til serveren.
+    
+        print lab2.roman2dec(romanTo)
+        #Printer ut desimale siffer fra romersk tallsystem. Bruker funksjon fra lab2.
+    except: 
+        print 'Noe er galt'
+        
         sys.exit()
