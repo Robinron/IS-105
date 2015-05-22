@@ -1,4 +1,23 @@
 # -*- coding: utf-8 -*-
+
+#
+#  IS-105 LAB1
+#
+#  lab1.py - kildekode vil inneholde studentenes løsning.
+#         
+#
+#
+import sys
+
+# Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
+gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
+			   'student2': 'Ricky Løtoft Omland', \
+            'student3': 'Cuong Bui', \
+            'student4': 'Kojar Heresh Baban', \
+            'student5': 'Lars Ole Vatne', \
+            'student6': 'Sondre Flovik', \
+}
+
 import re
 import math
 
