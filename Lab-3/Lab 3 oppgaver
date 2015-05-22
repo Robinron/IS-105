@@ -43,8 +43,7 @@ UDP er mer basert på rask og og effektiv overføringer, passer til applikasjone
 online spill.
 
 I denne laben har vi valgt å bruke UDP, grunnen er at mengden og størrelsene på pakkene som vi sender er såpass liten at det er 
-liten fare for eventuelle feil, og i denne labben skulle vi også måle hastigheten når meldinger blir overført, så da var det mer hensiktsmessig
-med en rask protokoll.
+ingen fare for eventuelle feil. Så da var det mest hensiktmessig med en rask og effektiv protokol.
 
 http://www.diffen.com/difference/TCP_vs_UDP
 
