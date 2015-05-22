@@ -1,4 +1,21 @@
-# -*- coding: latin-1 -*-
+# -*- coding: utf-8 -*-
+
+#
+#  IS-105 LAB3 Client
+#
+#         
+#
+#
+import sys
+
+# Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
+gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
+            'student2': 'Ricky Løtoft Omland', \
+            'student3': 'Cuong Bui', \
+            'student4': 'Kojar Heresh Baban', \
+            'student5': 'Lars Ole Vatne', \
+            'student6': 'Sondre Flovik', \
+}
 
 import socket #For sockets.
 import sys #For exit.
