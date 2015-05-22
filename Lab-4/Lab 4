@@ -24,24 +24,37 @@ gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
 
 def poker(hands):
     "Return a list of winning hands: poker([hand,...]) => [hand,...]"
+    # Tar i bruk allmax funksjonen som er under og bruker hand_rank til å rangere hendene
     return allmax(hands, key = hand_rank)
 
 def allmax(iterable, key=lambda x:x):
     "Return a list of all items equal to the max of the iterable."
+    # Her itereres det over alle elementer som er lagt til listen
     maxi = max(iterable, key=key)
     return [element for element in iterable if key(element) == key(maxi)]
 
 def hand_rank(hand):
     "Return a value indicating how high the hand ranks."
+    # 
     # counts is the count of each rank
     # ranks lists corresponding ranks
     # E.g. '7 T 7 9 7' => counts = (3, 1, 1); ranks = (7, 10, 9)
     groups = group(['--23456789TJQKA'.index(r) for r, s in hand])
     counts, ranks = unzip(groups)
+    # Counts teller og rangerer i synkende rekkefølge. Eksempelet ovenfor illustrerer.
+    # Ranks er rangeringen av kortene og under her legges det til en unntaksregel for kortet ess
+    # Dette fordi kortet ess kan ha verdien 1 og 14
     if ranks == (14, 5, 4, 3, 2):
         ranks = (5, 4, 3, 2, 1)
+    # Her definerer vi at straight = lengden av ranks = 5
+    # Og at det er fire kort fra det høyeste kortet til det laveste. 
+    # Eks: 9, 8, 7, 6, 5
     straight = len(ranks) == 5 and max(ranks)-min(ranks) == 4
+    # Her definerer vi at flush = at alle suits (typer) for ranks(kort) skal være like.
     flush = len(set([s for r, s in hand])) == 1
+    # Her er rangeringen fra 9 som er 5 like dersom vi har flere kortstokker
+    # Under kommer straight flush med en rangering på 8 osv helt ned til 0
+    # Dette er da at man ikke har par og bare går på høyeste kort.
     return (
         9 if (5, ) == counts else
         8 if straight and flush else
@@ -52,10 +65,12 @@ def hand_rank(hand):
         3 if (3, 1, 1) == counts else
         2 if (2, 2, 1) == counts else
         1 if (2, 1, 1, 1) == counts else
-        0), ranks
+        0), ranks 
 
 def group(items):
     "Return a list of [(count, x)...], highest count first, the highest x first"
+    # Her lages en liste hvor kortene "telles" for å kunne gi en rank til hånden
+    # Eksempelvis 7, 7, 7, 4, 3 blir da [3, 1, 1] Da det er tre 7ere og en hver av 4 og 3
     groups = [(items.count(x), x) for x in set(items)]
     return sorted(groups, reverse = True)
 
@@ -71,6 +86,15 @@ def card_ranks(hand):
     #           'J':11,
     #           'T':10,
     #           }.get(r,r) for r, s in hand]
+    
+    #            Lister opp verdiene i stigende/synkende rekkefølge
+    #            Hvis ikke A er presentert, så gå nedover rangstigen osv
+    #            Lager en for løkke
+    #            Rangeringen blir sortert og lager en regel for at revers rangering har samme verdi
+    #            Returnerer ranks hvis ranks ikke er lik 5,4,3,2
+    #            Her er det lagd en unntaksregel slik at programmet forstår at det er en straight. 
+    #            I andre tilfeller vil ess ha verdi lik 14     
+    
     ranks = [14 if r == 'A' else
              13 if r == 'K' else
              12 if r == 'Q' else
@@ -83,16 +107,20 @@ def card_ranks(hand):
 
 def straight(ranks):
     "Return True if the ordered ranks form a 5-card straight."
+    # Her sjekker vi om kortene blir straight
     return sum(ranks) - min(ranks)*5 == 10
 
 def flush(hand):
     "Return True if all the cards have the same suit."
+    # Som beskrivelsen, sjekker om kortene er av samme type og blir true om de har det
     suits = [s for r, s in hand]
     return len(set(suits)) == 1
 
 def two_pair(ranks):
     """If there are two pair, return the two ranks as a
     tuple: (highest, lowest); otherwise return None."""
+    # Sjekker om det er to par, og setter dem inn i en tuple fra høyest til lavest
+    # Om ikke returneres ingen ting (altså None)
     result = [r for r in set(ranks) if ranks.count(r) == 2]
     if len(result) == 2:
         return (max(result), min(result))
@@ -100,6 +128,8 @@ def two_pair(ranks):
 def kind(n, ranks):
     """Return the first rank that this hand has exactly n of.
     Return None if there is no n-of-a-kind in the hand."""
+    # Returnerer den første ranken som denne hånden har n av
+    # Eksempel: Hvis n er 3 returneres ranken til three of a kind
     for r in set(ranks):
         if ranks.count(r) == n:
             return r
@@ -109,12 +139,15 @@ deck = [r+s for r in '23456789TJQKA' for s in 'SHDC']
 
 def deal(numhands, n = 5, deck = [r+s for r in '23456789TJQKA' for s in 'SHDC']):
     "Return a list of numhands hands consisting of n cards each"
+    # Her deles det ut numhands antall hender med n kort i hver hånd
+    # Hendene består av kort med r fra 2 til A og s av SHDC
     random.shuffle(deck)
+    # Kortene stokkes
     deck = iter(deck)
     return [[next(deck) for card in range(n)] for hand in range(numhands)]
 
 def test():
-    "Test cases for the functions in poker program"
+    "Tester for funksjonene i poker programmet"
     sf = "6C 7C 8C 9C TC".split() # Straight Flush
     fk = "9D 9H 9S 9C 7D".split() # Four of a Kind
     fh = "TD TC TH 7C 7D".split() # Full House
@@ -124,35 +157,32 @@ def test():
     tp = "5S 5D 9H 9C 6S".split() # two pair
     ah = "AS 2S 3S 4S 6C".split() # A high
     sh = "2S 3S 4S 6C 7D".split() # 7 high
-    assert poker([sf, fk, fh]) == [sf]
-    assert poker([fk, fh]) == [fk]
-    assert poker([fh, fh]) == [fh, fh]
-    assert poker([sf]) == [sf]
-    assert poker([sf] + 99*[fh]) == [sf]
-    assert poker([s1, s2]) == [s2]
-    assert poker([s1, tp]) == [s1]
+    assert poker([sf, fk, fh]) == [sf] # Sjekker om straight flush er høyere enn fk og fh
+    assert poker([fk, fh]) == [fk] # Sjekker om fk er høyere enn fh
+    assert poker([fh, fh]) == [fh, fh] # Sjekker om fh og fh er like høyt rangert
+    assert poker([sf]) == [sf] # Sjekker om sf er lik sf
+    assert poker([sf] + 99*[fh]) == [sf] # Sjekker om sf er høyere en 99 fh
+    assert poker([s1, s2]) == [s2] # Sjekker om s2 straight er høyere enn s1 straight
+    assert poker([s1, tp]) == [s1] # Sjekker om s1 straight er høyere enn to par
+   
 
-    # assert hand_rank(sf) == (8, 10)
-    # assert hand_rank(fk) == (7, 9, 7)
-    # assert hand_rank(fh) == (6, 10, 7)
-    # assert hand_rank(s1) == (4, 5)
-    # assert hand_rank(s3) == (4, 14)    
+    assert card_ranks(sf) == [10, 9, 8, 7, 6] # Sjekker om  straight flush består av synkende verdier
+    assert card_ranks(fk) == [9, 9, 9, 9, 7] # Sjekker fire like
+    assert card_ranks(fh) == [10, 10, 10, 7, 7] # Sjekker fult hus
+    assert card_ranks(['AC', '3D', '4S', 'KH']) == [14, 13, 4, 3] # Sjekker at kortene rangeres riktig og sortere
 
-    assert card_ranks(sf) == [10, 9, 8, 7, 6]
-    assert card_ranks(fk) == [9, 9, 9, 9, 7]
-    assert card_ranks(fh) == [10, 10, 10, 7, 7]
-    assert card_ranks(['AC', '3D', '4S', 'KH']) == [14, 13, 4, 3]
-
-    # Ace-high beats 7-high
+    # Sjekker at en hånd med Ess som høyest slår en hånd med 7 som høyest
     assert (card_ranks(['AS', '2C', '3D', '4H', '6S']) >
             card_ranks(['2D', '3S', '4C', '6H', '7D']))
-    # 5-straight loses to 6-straight
+    # Sjekker at straight opp til fem blir slått av straight opp til 6
     assert (card_ranks(['AS', '2C', '3D', '4H', '5S']) <
             card_ranks(['2D', '3S', '4C', '5H', '6D']))
-
+    
+    # Lager variabler for fire like og to par
     fkranks = card_ranks(fk)
     tpranks = card_ranks(tp)
-
+    
+    # Videre testing av funksjonene
     assert kind(4, fkranks) == 9
     assert kind(3, fkranks) == None
     assert kind(2, fkranks) == None
@@ -163,12 +193,15 @@ def test():
 
     assert straight([9, 8, 7, 6, 5]) == True
     assert straight([9, 8, 8, 6, 5]) == False
-
+    
+    # Sjekker at sf er en flush
     assert flush(sf) == True
+    # Sjekker at fk ikke er en flush
     assert flush(fk) == False
 
-    return 'tests pass'
-
+    return 'Testene er gjennomført uten feil'
+    
+#Alle de forskjellige typene hender
 hand_names = [
     'High Card',
     'Pair',
@@ -182,6 +215,7 @@ hand_names = [
     ]
 def hand_percentages(n = 700*1000):
     "Sample n random hands and print a table of percentages for each type of hand"
+    # Lager n antall hender og tester de for å lage en tabell med prosentandel for hver hånd
     counts = [0]*9
     for i in range(n/10):
         for hand in deal(10):
@@ -189,7 +223,7 @@ def hand_percentages(n = 700*1000):
             counts[ranking] += 1
     for i in reversed(range(9)):
         print('%14s: %6.3f'%(hand_names[i], 100.*counts[i]/n))
-
+        
 def all_hand_percentages():
     "Print an exhaustive table of frequencies for each type of hand"
     counts = [0]*9
@@ -201,6 +235,8 @@ def all_hand_percentages():
         counts[ranking] += 1
     for i in reversed(range(9)):
         print('%14s: %7d %6.3f'%(hand_names[i], counts[i], 100.*counts[i]/n))
+
+        # Herfra og ned er de resterende funksjonene oppgaveteksten ber oss importere fra udacity
 
 def shuffle1(deck):
     # O(N**2)
@@ -269,3 +305,5 @@ def test_shufflers(shufflers=[shuffle, shuffle1], decks=['abc','ab']):
             test_shuffler(f, deck)
 
 def factorial(n): return 1 if (n <= 1) else n*factorial(n-1)
+
+print test() # Kjører testen som har alle assert setningene og printer ut at den er gjennomført uten feil
