@@ -52,7 +52,7 @@ def roman2dec(roman):
     result += d2r_table[1].index(tens) * 10
     result += d2r_table[0].index(units)
 
-    print result
+    return result
 
 # Konverterer en positiv desimal integer til et romertall.
 def dec2roman(dec):
@@ -86,9 +86,9 @@ def dec2roman(dec):
         dec_len -= 1
 
     
-    print result
-dec2roman(2129) 
-roman2dec("XII")
+    return result
+print dec2roman(2129) 
+print roman2dec("XII")
 # Vi bruker doit funksjonen til å utføre kalkulasjonen av rommertallene 
 # og printer ut resultatet av parametrene
 m=zip((1000,900,500,400,100,90,50,40,10,9,5,4,1),
