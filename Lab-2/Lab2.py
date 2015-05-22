@@ -21,8 +21,7 @@ gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
 import re
 import math
 
-# Koden er hentet fra "http://codereview.stackexchange.com/questions/902/conversion-from-to-roman-numbers"
-# Regular expression used to validate and parse Roman numbers
+# Uttrykk brukt for å validere og analysere Romerske tall
 roman_re = re.compile("""^
    ([M]{0,9})   # thousands
    ([DCM]*)     # hundreds
@@ -30,10 +29,9 @@ roman_re = re.compile("""^
    ([IVX]*)     # units
    $""", re.VERBOSE)
 
-# This array contains valid groups of digits and encodes their values.
-# The first row is for units, the second for tens and the third for
-# hundreds. For example, the sixth element of the tens row yields the
-# value 50, as the first is 0.
+# Dette arrayet inneholder gyldige grupperinger av siffer og deres verdi.
+# Den første rekken er for entall, den andre rekken for titall og den tredje for hundretall.
+# For eksempel, det sjette elementet i tier-rekken har verdien 50, siden det første er 0.
 d2r_table = [
     ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
     ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
@@ -42,13 +40,13 @@ d2r_table = [
 
 
 def roman2dec(roman):
-    """Converts a roman number, encoded in a string, to a decimal number."""
+# Konverterer et romertall kodet i string til desimaltall.
     roman = roman.upper()
     match = roman_re.match(roman)
-
+# Om stringen ikke samstemmer med en gyldig verdi så gis feilmelding. 
     if not match:
         raise ValueError
-
+# Angir verdiene til feltene units, tens, hundreds
     thousands, hundreds, tens, units = match.groups()
     result = 1000 * len(thousands)
     result += d2r_table[2].index(hundreds) * 100
@@ -57,9 +55,9 @@ def roman2dec(roman):
 
     print result
 
-
+# Konverterer en positiv desimal integer til et romertall.
 def dec2roman(dec):
-    """Converts a positive decimal integer to a roman number."""
+ 
     if dec == 0:
         return ''
 
@@ -67,24 +65,23 @@ def dec2roman(dec):
     rem = dec
     result = ''
 
-    # Length in digits of the number dec
+    # Antall siffer i nummeret dec
     dec_len = int(math.ceil(math.log10(dec)) + 1)
 
-    # Scan the number digit-by-digit, starting from the MSD (most-significant
-    # digit)
+    # Skanner nummeret digit-by-digit, starter fra MSD (most-significant-digit)
     while dec_len > 0:
-        # Let's take the current digit
+        # Ta det gjeldende sifferet
         factor = 10 ** (dec_len - 1)
         digit = rem / factor
 
-        # And remove it from the number
+        # Fjern det fra nummeret
         rem = rem - digit * factor
 
         if dec_len >= 4:
-            # Thousands
+            # Tusentall
             result = result + digit * 'M'
         else:
-            # Look in the look-up table
+            # Sjekker i look-up table
             result = result + d2r_table[dec_len - 1][digit]
 
         dec_len -= 1
