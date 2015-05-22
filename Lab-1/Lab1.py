@@ -8,7 +8,6 @@
 #
 #
 import sys
-import psutils
 
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
 gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
