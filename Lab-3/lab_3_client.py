@@ -3,6 +3,13 @@
 import socket   #for sockets
 import sys  #for exit
 
+gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
+            'student2': 'Ricky Løtoft Omland', \
+            'student3': 'Cuong Bui', \
+            'student4': 'Kojar Heresh Baban', \
+            'student5': 'Lars Ole Vatne', \
+            'student6': 'Sondre Flovik', \
+}
  
 # Lager dgram udp socket
 try:
