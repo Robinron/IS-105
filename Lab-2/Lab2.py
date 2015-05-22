@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
 #
-#  IS-105 LAB1
+#  IS-105 LAB2
 #
-#  lab1.py - kildekode vil inneholde studentenes løsning.
 #         
 #
 #
@@ -90,7 +89,8 @@ def dec2roman(dec):
     print result
 dec2roman(2129) 
 roman2dec("XII")
-
+# Vi bruker doit funksjonen til å utføre kalkulasjonen av rommertallene 
+# og printer ut resultatet av parametrene
 m=zip((1000,900,500,400,100,90,50,40,10,9,5,4,1),
 ('M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'))
 def doit(s):
