@@ -128,6 +128,7 @@ def transferBin(string):
 	l = list(string)
 	for c in l:
             return ascii8Bin(c)
+
             
 #   Her blir blokkene returnert i stedet for skrevet ut. 
 #   Grunnen til dette er at dersom koden ikke returnerer noe vil ikke assert-setningen vår i test() funksjonen gå gjennom
@@ -190,13 +191,61 @@ def unicodeBin(bokstav):
 # 			Operating system
 #	
 #	Forklar hvorfor man kan / ikke kan finne denne informasjon vha. psutil modulen.
+#
+#
 #	Skriv en funksjon printSysInfo som skriver ut den informasjon som psutil kan finne.
 #	Kan dere skrive en test for denne funksjonen?
 #	Hvilke andre muligheter har man for å finne informasjon om maskinvare i GNU/Linux?
 #
+
+import psutil
+import platform
+
+
 def printSysInfo():
-	pass
-#  Det er dette som mangler
+	hard_drive = psutil.disk_usage('/').total
+	amount_of_ram = psutil.virtual_memory().total
+	operating_system = platform.uname()[0]
+	user_name = platform.uname()[1]
+	
+	
+	print "Your total hard drive capacity is: " + str(hard_drive) + " bytes."
+	print "Your total amount of RAM is: " + str(amount_of_ram) + " bytes."
+	print "Your operating system is: " + str(operating_system)
+	print "Your username is: " +str(user_name)
+
+printSysInfo()
+
+"""
+Man kan bare finne noe av denne informasjonen ved hjelp av psutils. 
+Hovedsakelig angående ram og hard disk. Det går også an å finne informasjon angående CPU, men ikke model og hastigheten til CPU.
+Ved bruk av for eksempel psutil.cpu_percent vil man kunne finne ut hvilken prosentdel av CPU som brukes.
+
+Grunnen til at ikke flere kan finnes er at disse ikke inngår i psutil modulen. Operativsystem delen og brukernavn har vi tatt med ved å importere platform som er en annen modul.
+Dermed har vi mulighet til å finne mer informasjon.
+
+Det er ikke mulig å lage en test funksjon ved bruk av assert setninger her da vi ikke har en fast returverdi vi skal sjekke etter. Om vi hadde hatt det kunne vi ha testet, men dette blir individuelt for hver bruker av koden.
+I stedet tester vi med å faktisk kjøre funksjonen og vi vet dermed at den fungerer som vi vil.
+
+Man kan også bruke linux kommandoer i terminalen for å finne relevant informasjon om maskinvare, her er noen eksempler:
+
+Finne kjerneversjon og system arkitektur(Hos meg kommer det: Linux robin-VirtualBox 3.13.0-53-generic #89-Ubuntu SMP Wed May 20 10:34:39 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux)
+Kommando:  uname -a
+
+Finne total RAM(Hos meg kommer det: MemTotal:        1017828 kB)
+Kommando:  grep MemTotal /proc/meminfo
+
+Vise partisjonene på maskinen og størrelsen(Hos meg kommer det:
+major minor  #blocks  name
+
+  11        0    1048575 sr0
+   8        0    8388608 sda
+   8        1    7339008 sda1
+   8        2          1 sda2
+   8        5    1046528 sda5
+
+Kommando:  cat /proc/partitions
+"""
 
 
 def test():
