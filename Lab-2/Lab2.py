@@ -87,8 +87,10 @@ def dec2roman(dec):
 
     
     return result
-print dec2roman(2129) 
-print roman2dec("XII")
+# Her sjekket vi at koden fungerte før vi lagde testfilen
+# print dec2roman(2129) 
+# print roman2dec("XII")
+
 # Vi bruker doit funksjonen til å utføre kalkulasjonen av rommertallene 
 # og printer ut resultatet av parametrene
 m=zip((1000,900,500,400,100,90,50,40,10,9,5,4,1),
@@ -105,6 +107,6 @@ def doit(s):
  for n,c in m:d=int(i/n);r+=c*d;i-=n*d
  return r
 
-
-print doit("II + III")
-print doit("x - v")
+# Her sjekket vi at koden fungerte før vi lagde testfilen
+# print doit("II + III")
+# print doit("x - v")
