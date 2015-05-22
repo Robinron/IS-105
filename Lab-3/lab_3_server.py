@@ -4,6 +4,14 @@ import socket
 import sys
 import lab2
  
+ gruppe = {  'student1': 'Robin Amir Rondestvedt Moudnib', \
+            'student2': 'Ricky Løtoft Omland', \
+            'student3': 'Cuong Bui', \
+            'student4': 'Kojar Heresh Baban', \
+            'student5': 'Lars Ole Vatne', \
+            'student6': 'Sondre Flovik', \
+}
+ 
 HOST = 'localhost'   # Localhost
 PORT = 8888 # En ureservert port
 
